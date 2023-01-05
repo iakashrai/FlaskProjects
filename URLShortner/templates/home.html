@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %} URL Shorten {% endblock %}
+{% block content %}
+{{ super() }}
+<form action="#" method="post" class="url_form">
+    <label for="url">Enter an URL to Shorten</label>
+    <input type="url" name="longurl" id="longurl"
+        placeholder="https://example.com"
+        pattern="https://.*" size="150"
+        required
+    >
+    <br>
+    <input type="submit" value="submit" class="btn btn-primary">
+</form>
+{% endblock %}

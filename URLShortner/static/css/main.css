@@ -1,0 +1,46 @@
+*{
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #8d7171;
+}
+
+.header_title {
+  float: center;
+  display: block;
+  color: #0e0b0b;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.content {
+  background-color: #ddd;
+  padding: 14px 16px;
+  height: auto;
+}
+
+#shortenurl,.url_form{
+  text-align: center;
+  padding: 20vh 20vh;
+  height: 70vh
+}
+
+#longurl{
+margin: 10px 10px;
+padding: 10px 10px;
+}
+
+#footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}

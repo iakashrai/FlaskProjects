@@ -1,0 +1,11 @@
+{% extends "layout.html%}
+{% block title %} OOPs... {% endblock %}
+
+{% block head %}
+        <h1 class="header_title">Error 404</h1>
+{% endblock %}
+
+{% block content %}
+{{ super() }}
+<p id="errormessage">You hit wrong page</p>
+{% endblock %}
