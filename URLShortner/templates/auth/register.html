@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}Create account{% endblock %}
+{% block content %}
+<section class="auth-card">
+    <p class="eyebrow">GET STARTED</p><h1>Create your account</h1><p class="muted">Save and revisit every link you shorten.</p>
+    <form method="post" class="auth-form">
+        <label for="username">Username</label><input id="username" name="username" minlength="3" autocomplete="username" required>
+        <label for="password">Password</label><input id="password" name="password" type="password" minlength="8" autocomplete="new-password" required>
+        <button class="button button-full" type="submit">Create account</button>
+    </form>
+    <p class="auth-footer">Already have an account? <a href="{{ url_for('login') }}">Sign in</a></p>
+</section>
+{% endblock %}

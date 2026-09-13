@@ -1,26 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} {% endblock %}</title>
-    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A fast, simple URL shortener.">
+    <title>{% block title %}Shortly{% endblock %} · Shortly</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
-    {% block head %}
-    <header class="header">
-        <h2 class="header_title">URL Shortner Service</h2>
-    </header>
-    {% endblock %}
-    <div id="content">
-        {% block content %}
-        {% endblock %}
-    </div>
-    <div id="footer">
-        {% block footer %}
-        &copy; Copyright 2023 by <a href="https://github.com/iakashrai">Akash Rai</a>
-        {% endblock %}
-    </div>
+    <nav class="nav container">
+        <a class="brand" href="{{ url_for('index') if g.user else url_for('login') }}">
+            <span class="brand-mark">↗</span> Shortly
+        </a>
+        <div class="nav-actions">
+            {% if g.user %}
+                <span class="welcome">Hi, {{ g.user["username"] }}</span>
+                <form method="post" action="{{ url_for('logout') }}">
+                    <button class="button button-ghost" type="submit">Sign out</button>
+                </form>
+            {% else %}
+                <a class="button button-ghost" href="{{ url_for('login') }}">Sign in</a>
+                <a class="button button-small" href="{{ url_for('register') }}">Create account</a>
+            {% endif %}
+        </div>
+    </nav>
+    <main class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-stack">
+                    {% for category, message in messages %}
+                        <div class="flash flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="container footer">Built with Flask · Your links stay in your local database.</footer>
 </body>
 </html>

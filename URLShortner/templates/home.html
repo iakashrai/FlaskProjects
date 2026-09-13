@@ -1,15 +1,36 @@
 {% extends "layout.html" %}
-{% block title %} URL Shorten {% endblock %}
+{% block title %}Dashboard{% endblock %}
 {% block content %}
-{{ super() }}
-<form action="#" method="post" class="url_form">
-    <label for="url">Enter an URL to Shorten</label>
-    <input type="url" name="longurl" id="longurl"
-        placeholder="https://example.com"
-        pattern="https://.*" size="150"
-        required
-    >
-    <br>
-    <input type="submit" value="submit" class="btn btn-primary">
-</form>
+<section class="hero">
+    <p class="eyebrow">LINK MANAGEMENT, SIMPLIFIED</p>
+    <h1>Make every link<br><span>short and memorable.</span></h1>
+    <p class="hero-copy">Create clean, shareable links in seconds. Your personal link history is stored locally and always within reach.</p>
+    <form method="post" class="shorten-form">
+        <label class="sr-only" for="longurl">Long URL</label>
+        <input type="url" id="longurl" name="longurl" placeholder="Paste your long URL here..." value="{{ long_url|default('') }}" required>
+        <button class="button" type="submit">Shorten link <span>→</span></button>
+    </form>
+</section>
+<section class="links-section">
+    <div class="section-heading">
+        <div><p class="eyebrow">YOUR COLLECTION</p><h2>Recent links</h2></div>
+        <span class="count">{{ links|length }} link{{ "" if links|length == 1 else "s" }}</span>
+    </div>
+    {% if links %}
+        <div class="link-list">
+        {% for link in links %}
+            <article class="link-card">
+                <div class="link-icon">↗</div>
+                <div class="link-info">
+                    <a href="{{ url_for('redirect_to_url', token=link['token'], _external=True) }}" target="_blank" rel="noopener">{{ url_for('redirect_to_url', token=link['token'], _external=True) }}</a>
+                    <p>{{ link["long_url"] }}</p>
+                </div>
+                <time>{{ link["created_at"][:10] }}</time>
+            </article>
+        {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state"><div class="empty-icon">⌁</div><h3>Your collection is empty</h3><p>Shorten your first link above and it will appear here.</p></div>
+    {% endif %}
+</section>
 {% endblock %}

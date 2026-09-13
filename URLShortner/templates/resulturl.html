@@ -1,12 +1,15 @@
 {% extends "layout.html" %}
-{% block title %} Hurray {% endblock %}
-
-{% block head %}
-<header class="header">
-    <h2 class="header_title">Here is your Shortner URL</h2>
-</header>
-{% endblock %}
-
+{% block title %}Link ready{% endblock %}
 {% block content %}
-<p id="shortenurl">Sample url </p>
+<section class="result-card">
+    <div class="success-icon">✓</div>
+    <p class="eyebrow">YOUR LINK IS READY</p>
+    <h1>Share it anywhere.</h1>
+    <p class="muted">Your long URL has been shortened successfully.</p>
+    <div class="copy-row">
+        <input id="short-url" value="{{ short_url }}" readonly>
+        <button class="button" type="button" onclick="navigator.clipboard.writeText(document.getElementById('short-url').value); this.textContent='Copied!'">Copy link</button>
+    </div>
+    <a class="back-link" href="{{ url_for('index') }}">← Shorten another link</a>
+</section>
 {% endblock %}

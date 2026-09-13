@@ -1,0 +1,4 @@
+URLShortner/instance/
+URLShortner/__pycache__/
+URLShortner/models/__pycache__/
+URLShortner/*.pyc

@@ -1,11 +1,5 @@
-{% extends "layout.html%}
-{% block title %} OOPs... {% endblock %}
-
-{% block head %}
-        <h1 class="header_title">Error 404</h1>
-{% endblock %}
-
+{% extends "layout.html" %}
+{% block title %}Not found{% endblock %}
 {% block content %}
-{{ super() }}
-<p id="errormessage">You hit wrong page</p>
+<section class="empty-state error-state"><div class="empty-icon">?</div><h1>Link not found</h1><p>This short link may have expired or never existed.</p><a class="button" href="{{ url_for('index') }}">Go home</a></section>
 {% endblock %}
